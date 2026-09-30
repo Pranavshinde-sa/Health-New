@@ -1,0 +1,32 @@
+{
+  "family": "health-agent-ecs-demo",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/<ECS_EXECUTION_ROLE>",
+  "taskRoleArn": "arn:aws:iam::<ACCOUNT_ID>:role/<ECS_TASK_ROLE>",
+  "containerDefinitions": [
+    {
+      "name": "health-agent-ecs-demo",
+      "image": "<ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/health-agent-ecs-demo:latest",
+      "essential": true,
+      "environment": [
+        {
+          "name": "FAIL_TASK",
+          "value": "false"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/health-agent-ecs-demo",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}

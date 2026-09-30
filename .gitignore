@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+health-agent-state.json
+*.zip

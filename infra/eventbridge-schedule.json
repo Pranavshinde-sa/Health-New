@@ -1,0 +1,23 @@
+{
+  "Note": "Use this as the conceptual target configuration for EventBridge Scheduler.",
+  "ScheduleExpression": "rate(5 minutes)",
+  "Target": {
+    "Type": "ECS RunTask",
+    "LaunchType": "FARGATE",
+    "TaskDefinition": "health-agent-ecs-demo",
+    "DesiredCount": 1
+  },
+  "Input": {
+    "containerOverrides": [
+      {
+        "name": "health-agent-ecs-demo",
+        "environment": [
+          {
+            "name": "FAIL_TASK",
+            "value": "false"
+          }
+        ]
+      }
+    ]
+  }
+}
